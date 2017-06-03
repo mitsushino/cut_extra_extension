@@ -8,10 +8,16 @@ import os
 
 def cut_extra_extension(file_name):
     try:
-        period_position = file_name.rindex('.')
-        return file_name[:period_position + 4]
+        while True:
+            period_position = file_name.rindex('.')
+            file_name = file_name[:period_position + 4]
+            ext = file_name[-3:]
+            if ext == 'mp4' or ext == 'vlc':
+                return file_name
+            else:
+                file_name = file_name[:-4]
     except ValueError:
-        'ファイル名にドット(.)が存在しないため、次の変換を行います'
+        print('ファイル名にドット(.)が存在しないため、次の変換を行います')
         return file_name
 
 
@@ -21,5 +27,6 @@ if __name__ == '__main__':
         sys.exit(0)
     current_folder_files = os.listdir('.')
     for f in current_folder_files:
+        print('{}を変換しています・・・'.format(f))
         os.rename(f, cut_extra_extension(f))
     input('処理が完了しました')
