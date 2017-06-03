@@ -12,7 +12,7 @@ def cut_extra_extension(file_name):
             period_position = file_name.rindex('.')
             file_name = file_name[:period_position + 4]
             ext = file_name[-3:]
-            if ext == 'mp4' or ext == 'vlc':
+            if ext == 'mp4' or ext == 'vlc' or ext == 'exe':
                 return file_name
             else:
                 file_name = file_name[:-4]
